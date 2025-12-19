@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Formulario</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+</head>
+<body>
+<div class="container my-4">
+    <h3 class="text-center" >Formulario</h3>
+    <form class="card p-3" th:action="@{/api/tabla}" th:object="${form}" method="post">
+
+        <!-- nombre y edad -->
+        <div class="row mb-3">
+            <div class="col-md-6">
+                <label class="form-label">Nombre</label>
+                <input type="text" th:field="*{nombre}" class="form-control">
+                <div class="text-danger small" th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}"></div>
+            </div>
+
+            <div class="col-md-3">
+                <label class="form-label">Edad</label>
+                <input type="text" th:field="*{edad}" class="form-control">
+                <div class="text-danger small" th:if="${#fields.hasErrors('edad')}" th:errors="*{edad}"></div>
+            </div>
+        </div>
+
+        <!-- sexo -->
+        <div class="row">
+            <div class="col">
+                <label class="form-label d-block">Sexo</label>
+                <div class="form-check form-check-input">
+                    <input class="form-check-input" type="radio" th:field="*{sexo}" th:value="Masculino">
+                    <label class="form-check-label">Masculino</label>
+                </div>
+                <div class="form-check form.check-input">
+                    <input class="form-check-input" type="radio" th:field="*{sexo}" th:value="Femenino">
+                    <label class="form-check-label">Femenino</label>
+                </div>
+                <div class="text-danger small" th:if="${#fields.hasErrors('sexo')}" th:errors="*{sexo}">
+                </div>
+            </div>
+        </div>
+
+        <!-- ocupacion y tablas -->
+        <div class="row">
+            <div class="col">
+                <label class="form-label">Ocupacion</label>
+                <select th:field="*{ocupacion}" class="form-control">
+                    <option value="">Selecciona</option>
+                    <option value="Programador" >Programador</option>
+                    <option value="Estudiante" >Estudiante</option>
+                    <option value="Otro" >Otro</option>
+                </select>
+                <div class="text-danger small" th:if="${#fields.hasErrors('ocupacion')}" th:errors="*{ocupacion}"></div>
+            </div>
+            <div class="col">
+                <label class="form-label">Tabla Inicial</label>
+                <input type="number" th:field="*{tablaInicial}" class="form-control">
+                <div class="text-danger small" th:if="${#fields.hasErrors('tablaInicial')}" th:errors="*{tablaInicial}"></div>
+            </div>
+            <div class="col">
+                <label class="form-label">Tabla Final</label>
+                <input type="number" th:field="*{tablaFinal}" class="form-control">
+                <div class="text-danger small" th:if="${#fields.hasErrors('tablaFinal')}" th:errors="*{tablaFinal}"></div>
+            </div>
+        </div>
+
+        <div>
+            <button type="submit" class="btn btn-primary" >Enviar</button>
+        </div>
+    </form>
+</div>
+
+</body>
+</html>

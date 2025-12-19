@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+</head>
+<body>
+
+<div class="container">
+    <h3 class="text-center">Resultados</h3>
+
+    <!-- datos personales -->
+    <div class="card mb-3">
+        <div class="card-body">
+            <p> <strong>Nombre: </strong>  <span th:text="${nombre}" ></span></p>
+            <p> <strong>Edad: </strong>  <span th:text="${edad}" ></span></p>
+            <p> <strong>Sexo: </strong>  <span th:text="${sexo}" ></span></p>
+            <p> <strong>Ocupacion: </strong>  <span th:text="${ocupacion}" ></span></p>
+        </div>
+
+        <!-- tablas de multiplicar -->
+        <div class="card">
+            <div class="card.body">
+                <h4 class="card-title">
+                    Tablas del:
+                    <span th:text="${tablaInicial}"></span>
+                    al:
+                    <span th:text="${tablaFinal}"></span>
+                </h4>
+                <table class="table table-bordered table-sm text-center">
+                    <thead>
+                      <tr><th th:each="i : ${#numbers.sequence(1,10)}" th:text="|x${i}|"></th></tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="n : ${#numbers.sequence(tablaInicial, tablaFinal)}">
+                        <th th:text="${n}"></th>
+                        <td th:each="i : ${#numbers.sequence(1,10)}" th:text="|${n}x${i}=${n*i}|"></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+</body>
+</html>
